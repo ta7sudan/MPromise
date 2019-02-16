@@ -1,17 +1,32 @@
-import test from 'ava';
+const { MPromise, reject: _reject, resolve: _resolve } = require('../dist/MPromise.cjs');
+const promisesAplusTests = require('promises-aplus-tests');
 
-/* global todo */
+const adapter = {
+	resolved(val) {
+		return new MPromise((rs, rj) => rs(val));
+	},
+	rejected(reason) {
+		return new MPromise((rs, rj) => rj(reason));
+	},
+	deferred() {
+		const promise = new MPromise();
+		function resolve(val) {
+			_resolve(promise, val);
+		}
+		function reject(val) {
+			_reject(promise, val);
+		}
+		return {
+			promise,
+			resolve,
+			reject
+		};
+	}
+};
 
-/**
- * AVA 默认不处理src下面的文件, 所以需要@babel/register
- * 对于async, 还需要@babel/polyfill, 这些都在package.json中配置
- * 另外由于tree shaking的需要, 全局的babel配置是不会将ES module
- * 语法转换成CommonJS的(modules: false), 所以需要覆盖掉全局babel配置
- */
-
-const sleep = time => new Promise(rs => setTimeout(rs, time));
-const isObj = o => Object.prototype.toString.call(o) === '[object Object]';
-
-test('todo', async t => {
-	t.pass();
+promisesAplusTests(adapter, function (err) {
+	// All done; output is in the console. Or check `err` for number of failures.
+	if (err) {
+		console.log(err);
+	}
 });

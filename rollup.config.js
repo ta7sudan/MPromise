@@ -1,3 +1,4 @@
+import typescript from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import minify from 'rollup-plugin-babel-minify';
@@ -16,12 +17,20 @@ const banner = `/**
  * @License: ${license}
  */`;
 
+/**
+ * 虽然讲babel其实已经没必要, 但是建议还是留个babel,
+ * 在某些时候会有些帮助...也不差这点编译时间
+ */
 export default [
 	{
-		input: 'src/index.js',
+		input: 'src/index.ts',
 		plugins: [
 			replace({
 				DEBUG: JSON.stringify(false)
+			}),
+			typescript({
+				tsconfig: 'tsconfig.json',
+				useTsconfigDeclarationDir: true
 			}),
 			babel({
 				exclude: 'node_modules/**'
@@ -45,10 +54,14 @@ export default [
 		]
 	},
 	{
-		input: 'src/index.js',
+		input: 'src/index.ts',
 		plugins: [
 			replace({
 				DEBUG: JSON.stringify(false)
+			}),
+			typescript({
+				tsconfig: 'tsconfig.json',
+				useTsconfigDeclarationDir: true
 			}),
 			babel({
 				exclude: 'node_modules/**'

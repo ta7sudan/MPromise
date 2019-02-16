@@ -1,0 +1,64 @@
+{
+	"defaultSeverity": "error",
+	"extends": [
+		"tslint:recommended"
+	],
+	"jsRules": {},
+	"rules": {
+		"no-console": false,
+		"adjacent-overload-signatures": true,
+		"member-access": true,
+		"no-parameter-reassignment": true,
+		"only-arrow-functions": false,
+		"typedef-whitespace": true,
+		"unified-signatures": true,
+		"ban-comma-operator": false,
+		"arrow-return-shorthand": true,
+		"linebreak-style": [true, "LF"],
+		"indent": [
+			true,
+			"tabs",
+			2
+		],
+		"variable-name": [
+			true,
+			"allow-leading-underscore",
+			"allow-trailing-underscore"
+		],
+		"trailing-comma": [
+			true,
+			{
+				"multiline": "ignore",
+				"singleline": "never"
+			}
+		],
+		"arrow-parens": false,
+		"no-angle-bracket-type-assertion": false,
+		"eofline": false,
+		"quotemark": [
+			true,
+			"single",
+			"avoid-escape"
+		],
+		"member-ordering": [
+			true,
+			{
+				"order": [
+					"public-static-field",
+					"protected-static-field",
+					"private-static-field",
+					"public-instance-field",
+					"protected-instance-field",
+					"private-instance-field",
+					"public-constructor",
+					"protected-constructor",
+					"private-constructor"
+				]
+			}
+		]
+	},
+	"rulesDirectory": [],
+	"linterOptions": {
+		"format": "verbose"
+	}
+}
