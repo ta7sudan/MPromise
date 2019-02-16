@@ -1,2 +1,2 @@
 # MPromise
-A implementation of Promises/A+.
+A library template for dulu

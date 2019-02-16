@@ -1,0 +1,88 @@
+{
+  "name": "MPromise",
+  "version": "0.1.0",
+  "description": "A implementation of Promises/A+.",
+  "main": "dist/MPromise.cjs.js",
+  "module": "dist/MPromise.esm.js",
+  "browser": "dist/MPromise.umd.js",
+  "sideEffects": false,
+  "types": "types/index.d.ts",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "prebuild": "rimraf dist",
+    "build-dev": "rollup -c rollup.dev.js",
+    "lint": "eslint src test",
+    "format": "prettier --config .prettierrc.js --write src/**/*.js test/**/*.js",
+    "inspect": "jsinspect src",
+    "test": "nyc ava -v",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "report": "nyc report --reporter=html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ta7sudan/MPromise.git"
+  },
+  "keywords": [
+    "Promise/A+"
+  ],
+  "author": "ta7sudan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ta7sudan/MPromise/issues"
+  },
+  "files": [
+    "src",
+    "dist",
+    "example",
+    "types"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run build && npm run build-dev && git add ."
+    }
+  },
+  "ava": {
+    "cache": true,
+    "require": [
+      "./test/_register",
+      "@babel/polyfill"
+    ]
+  },
+  "nyc": {
+    "cache": true,
+    "include": [
+      "src/**/*.js"
+    ]
+  },
+  "homepage": "https://github.com/ta7sudan/MPromise#readme",
+  "browserslist": [
+    "last 2 iOS major versions"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
+    "ava": "^1.1.0",
+    "babel-plugin-array-includes": "^2.0.3",
+    "codecov": "^3.1.0",
+    "eslint": "^5.12.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^1.3.1",
+    "jsinspect": "^0.12.7",
+    "lint-staged": "^8.1.0",
+    "nyc": "^13.1.0",
+    "prettier": "^1.15.3",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.1.0",
+    "rollup-plugin-babel": "^4.3.0",
+    "rollup-plugin-babel-minify": "^6.2.0",
+    "rollup-plugin-replace": "^2.1.0"
+  }
+}
