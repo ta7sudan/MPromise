@@ -7,6 +7,8 @@
 	"jsRules": {},
 	"rules": {
 		"no-console": false,
+		"object-literal-sort-keys": false,
+		"interface-name": false,
 		"adjacent-overload-signatures": true,
 		"member-access": true,
 		"no-parameter-reassignment": true,
@@ -60,6 +62,9 @@
 	},
 	"rulesDirectory": [],
 	"linterOptions": {
-		"format": "verbose"
+		"format": "verbose",
+    "exclude": [
+			"node_modules/**"
+		]
 	}
 }
