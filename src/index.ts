@@ -82,7 +82,7 @@ export class MPromise<T> {
 		// 2.3.1. 如果 `promise` 和 `x` 指向同一个对象, 则将 `promise` 置为 rejected, 并用一个 `TypeError` 作为 reason
 		if (promise === x) {
 			promise[setValueAndStatus](new TypeError('promise is same as x'), PStatus.rejected);
-		// 2.3.2. 如果 `x` 是一个 promise, 则 `promise` 采用 `x` 的状态
+			// 2.3.2. 如果 `x` 是一个 promise, 则 `promise` 采用 `x` 的状态
 		} else if (x instanceof MPromise) {
 			// 如果x是pending, 则将x添加为promise的依赖
 			// 2.3.2.1. 如果 `x` 是 pending 状态, 则 `promise` 必须保持 pending 状态
@@ -97,7 +97,7 @@ export class MPromise<T> {
 				// 2.3.2.3. 如果/当 `x` 是 rejected 状态, 则将 `promise` 置为 rejected 状态, 并具有和 `x` 一样的 reason.
 				promise[setValueAndStatus](x[_value], x[_status]);
 			}
-		// 2.3.3. 否则, 如果 `x` 是一个对象或函数
+			// 2.3.3. 否则, 如果 `x` 是一个对象或函数
 		} else if (Object.prototype.toString.call(x) === '[object Object]' || typeof x === 'function') {
 			let then = null;
 			try {
@@ -206,7 +206,7 @@ export class MPromise<T> {
 				// 需要一个数组就行, 不需要两个, 也避免了需要处理当已经
 				// 是最终状态时候, 还得清空掉另一个状态的队列的情况, 避免
 				// 内存泄漏
-				(<Sub> this[_subs].shift())(this[_status]);
+				(<Sub>this[_subs].shift())(this[_status]);
 			}
 		});
 	}
